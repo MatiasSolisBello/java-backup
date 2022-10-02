@@ -3,10 +3,13 @@ package tshirts;
 import java.util.Scanner;
 
 public class Tshirts {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Customer c = new Customer();
         Sale s = new Sale();
         Scanner sn = new Scanner(System.in);
+        
+        boolean customerAdd = false;
+        boolean saleAdd = false;
         
         int option = 0;
         
@@ -65,13 +68,20 @@ public class Tshirts {
                         continue;
                     }
                     c.setCustomerType(customerType);
-                    
+                    customerAdd = true;
                     System.out.println("***Cliente registrado correctamente***");
+                    Thread.sleep(2*1000);
                     break;
                 
                     
                 // OPCION 2: Registro de venta
                 case 2:
+                    if(customerAdd == false){
+                        System.out.println("** Primero agrega un cliente **");
+                        Thread.sleep(2*1000);
+                        continue;
+                    }
+                    
                     System.out.println("  --- REGISTRO DE VENTA --- ");
                     System.out.println("");
                     
@@ -96,16 +106,47 @@ public class Tshirts {
                     
                     s.setCustomer(c); //cliente a la venta
                     
+                    saleAdd = true;
                     System.out.println("*** Venta registrada correctamente ***");
+                    Thread.sleep(2*1000);
                     break;
                 
                     
                 // OPCION 3: Calcular total venta
                 case 3:
+                    if(saleAdd == false){
+                        System.out.println("** Primero ingresa una venta **");
+                        Thread.sleep(2*1000);
+                        continue;
+                    }
+                    
+                    System.out.println("Es total de la venta es: $"
+                            + s.calculateTotal());
+                    Thread.sleep(2*1000);
                     break;
+                    
+                // OPCION 4: Ver datos cliente
                 case 4:
+                    if(customerAdd == false){
+                        System.out.println("** Primero ingresa un cliente **");
+                        Thread.sleep(2*1000);
+                        continue;
+                    }
+                    Thread.sleep(1*1000);
+                    c.showCustomerData();
+                    Thread.sleep(2*1000);
                     break;
+                    
+                // OPCION 5: Ver datos venta
                 case 5:
+                    if(saleAdd == false){
+                        System.out.println("** Primero ingresa una venta **");
+                        Thread.sleep(2*1000);
+                        continue;
+                    }
+                    Thread.sleep(1*1000);
+                    s.showSaleData();
+                    Thread.sleep(2*1000);
                     break;
             }
         }while(option != 6);
