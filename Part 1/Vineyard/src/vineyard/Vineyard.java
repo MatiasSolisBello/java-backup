@@ -39,6 +39,11 @@ public class Vineyard {
                     
                     System.out.println("Ingrese el nombre: ");
                     String name = sn.nextLine();
+                    if(name.length() < 3 || name.length() > 25){
+                        System.out.println("Largo de nombre debe ser entre 3 y "
+                                + "25 caracteres");
+                        continue;
+                    }
                     c.setName(name);
                             
                             
@@ -101,8 +106,18 @@ public class Vineyard {
                     System.out.println("*** Venta registrada correctamente ***");
                     Thread.sleep(2*1000);
                     break;
-                    
+                
+                // OPCION 3: Calcular total venta
                 case 3:
+                    if(saleAdd == false){
+                        System.out.println("** Primero ingresa una venta **");
+                        Thread.sleep(2*1000);
+                        continue;
+                    }
+                    
+                    System.out.println("Es total de la venta es: $"
+                            + s.calculateTotal());
+                    Thread.sleep(2*1000);
                     break;
                     
                     

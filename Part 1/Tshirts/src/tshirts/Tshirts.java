@@ -47,9 +47,17 @@ public class Tshirts {
                     }
                     c.setName(name);
                     
-                    System.out.println("Ingrese el edad: ");
-                    int age = Integer.parseInt(sn.nextLine()); //int
-                    c.setAge(age);
+                    System.out.println("Ingrese el edad: ");  
+                    try {
+                        int age = Integer.parseInt(sn.nextLine()); //int
+                        if(age < 1){
+                            System.out.println("La edad no es valida");
+                        }
+                        c.setAge(age);
+                    } catch (NumberFormatException nfe) {
+                        System.out.println("Edad debe ser numerico");
+                    }
+                    
                     
                     System.out.println("Ingrese el direccion: ");
                     String address = sn.nextLine();
