@@ -1,5 +1,8 @@
 package videoclub;
 
+// --------------------------------------------
+// Clase Fisica que extiende de Pelicula
+// --------------------------------------------
 public class PhysicalFormat extends Movie{
     private String format;
     
@@ -25,7 +28,8 @@ public class PhysicalFormat extends Movie{
     public String toString() {
         return super.toString() + "PhysicalFormat{" + "format=" + format + '}';
     }
-
+    
+    // Metodo para obtener total de la compra
     @Override
     public int getTotalPurchase() {
         int amount = this.getAmount();
@@ -40,15 +44,34 @@ public class PhysicalFormat extends Movie{
         
         return amount;
     }
-
+    
+    
+    // Metodo para obtener descuentos
     @Override
     public int discount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int discount = (this.getTotalPurchase() * this.physicalDiscount)/100;
+        return discount;
     }
-
+    
+    
+    // Metodo para obtener total FINAL
     @Override
     public int getTotal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int amountWithDiscount = this.getTotalPurchase() - this.discount();
+        int ivaSale = (amountWithDiscount * iva) / 100;
+        int amountWithIVA = amountWithDiscount + ivaSale;
+        
+        System.out.println("El monto final es: "+amountWithIVA);
+        return amountWithIVA;
+    }
+
+    
+    // Metodo para obtener clasificacion
+    @Override
+    public void getClassification() {
+        System.out.println("Película en formato físico: "+this.getCode()+", "
+                + "$"+this.getTotal()+
+                " - Formato: "+format);
     }
     
     

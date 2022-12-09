@@ -1,5 +1,8 @@
 package videoclub;
 
+// --------------------------------------------
+// Clase abstracta Pelicula que implementa ICalculable
+// --------------------------------------------
 public abstract class Movie implements ICalculable {
     private String code;
     private String title;
@@ -54,4 +57,6 @@ public abstract class Movie implements ICalculable {
     }
     
     
+    // Metodo abstracto para obtener clasificacion
+    public abstract void getClassification();
 }
