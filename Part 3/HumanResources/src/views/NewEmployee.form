@@ -32,16 +32,7 @@
                   <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                  <Component id="lbl_age" min="-2" pref="58" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="txt_sex" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbl_position" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="lbl_lastname1" min="-2" pref="100" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lbl_lastname" min="-2" pref="100" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -55,10 +46,19 @@
                       <Component id="lbl_rut" min="-2" pref="67" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lbl_position" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_age" min="-2" pref="58" max="-2" attributes="0"/>
+                          <Component id="txt_sex" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="txt_rut1" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="txt_rut" min="-2" pref="156" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -73,9 +73,9 @@
                       <Component id="rbt_female" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="chk_isforeign" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="txt_name1" min="-2" pref="156" max="-2" attributes="0"/>
+                  <Component id="txt_name" min="-2" pref="156" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="388" max="32767" attributes="0"/>
+              <EmptySpace pref="97" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -94,20 +94,20 @@
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="77" max="32767" attributes="0"/>
+              <EmptySpace pref="65" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbl_rut" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
-                  <Component id="txt_rut1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_rut" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbl_name" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="txt_name1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_name" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txt_lastname" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbl_lastname1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="lbl_lastname" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -155,10 +155,10 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Edad"/>
+        <Property name="text" type="java.lang.String" value="Edad:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txt_rut1">
+    <Component class="javax.swing.JTextField" name="txt_rut">
     </Component>
     <Component class="javax.swing.JLabel" name="lbl_name">
       <Properties>
@@ -168,9 +168,9 @@
         <Property name="text" type="java.lang.String" value="Nombre:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txt_name1">
+    <Component class="javax.swing.JTextField" name="txt_name">
     </Component>
-    <Component class="javax.swing.JLabel" name="lbl_lastname1">
+    <Component class="javax.swing.JLabel" name="lbl_lastname">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="18" style="1"/>
@@ -185,7 +185,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Cargo"/>
+        <Property name="text" type="java.lang.String" value="Cargo:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbo_position">
@@ -204,7 +204,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Sexo"/>
+        <Property name="text" type="java.lang.String" value="Sexo:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbt_male">
@@ -244,6 +244,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Limpiar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cleanActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

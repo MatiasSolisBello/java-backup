@@ -4,7 +4,9 @@ import Entities.Employee;
 import db.Connect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class EmployeeDAO {
     private Connect connect = new Connect();
@@ -34,5 +36,65 @@ public class EmployeeDAO {
             conn.close();
         }
         return is_create;
+    }
+
+    public ArrayList<Employee> listEmployee () throws SQLException{
+        ArrayList<Employee> e = new ArrayList<>();
+        Connection conn = connect.openConnection();
+        
+        try {
+            String sql = "select * from employee";
+            PreparedStatement stmt = conn.prepareCall(sql);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Employee emp = new Employee();
+                emp.setRut(rs.getString("rut"));
+                emp.setName(rs.getString("name"));
+                emp.setLast_name(rs.getString("last_name"));
+                emp.setAge(rs.getInt("age"));
+                emp.setPosition(rs.getString("position"));
+                emp.setSex(rs.getBoolean("sex"));
+                emp.setIs_foreign(rs.getBoolean("is_foreign"));
+                e.add(emp);
+            }
+        } catch (Exception ex) {
+            System.out.println("Error al listar: "+ ex.getMessage());
+        }finally{
+            conn.close();
+        }
+        
+        return e;
+    }
+
+    public ArrayList<Employee> searchEmployeeByRut(String rut) throws SQLException{
+        ArrayList<Employee> e = new ArrayList<>();
+        Connection conn = connect.openConnection();
+        
+        try {
+            String sql = "select * from employee where rut = ?";
+            PreparedStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, rut);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Employee emp = new Employee();
+                emp.setRut(rs.getString("rut"));
+                emp.setName(rs.getString("name"));
+                emp.setLast_name(rs.getString("last_name"));
+                emp.setAge(rs.getInt("age"));
+                emp.setPosition(rs.getString("position"));
+                emp.setSex(rs.getBoolean("sex"));
+                emp.setIs_foreign(rs.getBoolean("is_foreign"));
+                e.add(emp);
+            }
+        } catch (Exception ex) {
+            System.out.println("Error al listar: "+ ex.getMessage());
+        }finally{
+            conn.close();
+        }
+        
+        return e;
     }
 }
