@@ -97,4 +97,22 @@ public class EmployeeDAO {
         
         return e;
     }
+
+    public boolean deleteEmployee(String rut) throws SQLException{
+        boolean is_delete = false;
+        
+        Connection conn = connect.openConnection();
+        
+        try {
+            String sql = "delete from employee where rut = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, rut);
+            is_delete = (stmt.executeUpdate() > 0);
+        } catch (Exception e) {
+            System.out.println("Error al eliminar: "+ e.getMessage());
+        } finally {
+            conn.close();
+        }
+        return is_delete;
+    }
 }

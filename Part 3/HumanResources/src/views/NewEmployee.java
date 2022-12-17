@@ -2,12 +2,14 @@ package views;
 
 import Entities.Employee;
 import dao.EmployeeDAO;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class NewEmployee extends javax.swing.JFrame {
 
     public NewEmployee() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")

@@ -51,6 +51,10 @@ public class Employee {
     }
 
     public void setAge(int age) {
+        if(age < 18){
+            throw new IllegalArgumentException("La persona debe ser mayor "
+                    + "de edad");
+        }
         this.age = age;
     }
 

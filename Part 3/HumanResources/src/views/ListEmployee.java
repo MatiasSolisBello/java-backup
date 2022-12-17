@@ -4,16 +4,18 @@ import Entities.Employee;
 import dao.EmployeeDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ListEmployee extends javax.swing.JFrame {
-
+    ArrayList<Employee> emp = null;
     /**
      * Creates new form ListEmployee
      */
     public ListEmployee() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -49,6 +51,11 @@ public class ListEmployee extends javax.swing.JFrame {
         });
 
         btn_delete.setText("Eliminar");
+        btn_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,6 +101,27 @@ public class ListEmployee extends javax.swing.JFrame {
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
         this.list_data();
     }//GEN-LAST:event_btn_searchActionPerformed
+
+    
+    //  -----------------------
+    //  BOTON ELIMINAR
+    //  -----------------------
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
+        int row_index = tbl_employee.getSelectedRow();
+        Employee e = this.emp.get(row_index);
+        EmployeeDAO dao = new EmployeeDAO();
+        
+        try {
+            if(dao.deleteEmployee(e.getRut())){
+                JOptionPane.showMessageDialog(this, "Eliminado Correctamente");
+            }else{
+                JOptionPane.showMessageDialog(this, "No se ha podido eliminar");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        this.list_data();
+    }//GEN-LAST:event_btn_deleteActionPerformed
     
     //  -----------------------
     //  FUNCION PARA LISTAR EMPLEADOS
@@ -101,9 +129,7 @@ public class ListEmployee extends javax.swing.JFrame {
     private void list_data(){
         EmployeeDAO dao = new  EmployeeDAO();
         
-        try {
-            ArrayList<Employee> emp = null;
-            
+        try {            
             if(txt_rut.getText().isEmpty()){
                 emp = dao.listEmployee();
             }else{
