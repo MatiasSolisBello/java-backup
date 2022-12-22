@@ -15,6 +15,7 @@ public class ListEmployee extends javax.swing.JFrame {
      */
     public ListEmployee() {
         initComponents();
+        this.list_data();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -27,6 +28,8 @@ public class ListEmployee extends javax.swing.JFrame {
         txt_rut = new javax.swing.JTextField();
         btn_search = new javax.swing.JButton();
         btn_delete = new javax.swing.JButton();
+        btn_update = new javax.swing.JButton();
+        btn_exit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +60,20 @@ public class ListEmployee extends javax.swing.JFrame {
             }
         });
 
+        btn_update.setText("Modificar");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
+
+        btn_exit.setText("Salir");
+        btn_exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_exitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,6 +92,10 @@ public class ListEmployee extends javax.swing.JFrame {
                         .addGap(29, 29, 29))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_exit)
+                .addGap(18, 18, 18)
+                .addComponent(btn_update)
+                .addGap(26, 26, 26)
                 .addComponent(btn_delete)
                 .addGap(38, 38, 38))
         );
@@ -88,11 +109,15 @@ public class ListEmployee extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(btn_delete)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_delete)
+                    .addComponent(btn_update)
+                    .addComponent(btn_exit))
                 .addGap(35, 35, 35))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     //  -----------------------
@@ -108,6 +133,11 @@ public class ListEmployee extends javax.swing.JFrame {
     //  -----------------------
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
         int row_index = tbl_employee.getSelectedRow();
+        
+        if (row_index != 1){
+            JOptionPane.showMessageDialog(this, "No se ha podido eliminar");
+            this.list_data();
+        }
         Employee e = this.emp.get(row_index);
         EmployeeDAO dao = new EmployeeDAO();
         
@@ -122,6 +152,25 @@ public class ListEmployee extends javax.swing.JFrame {
         }
         this.list_data();
     }//GEN-LAST:event_btn_deleteActionPerformed
+    
+    //  -----------------------
+    //  BOTON PARA MODIFICAR EMPLEADOS
+    //  -----------------------
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        try {
+            int row_index = tbl_employee.getSelectedRow();
+            Employee e = emp.get(row_index);
+            
+            UpdateEmployee update = new UpdateEmployee(e);
+            update.setVisible(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Selecciona un empleado");
+        }
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btn_exitActionPerformed
     
     //  -----------------------
     //  FUNCION PARA LISTAR EMPLEADOS
@@ -211,7 +260,9 @@ public class ListEmployee extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_delete;
+    private javax.swing.JButton btn_exit;
     private javax.swing.JButton btn_search;
+    private javax.swing.JButton btn_update;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_employee;
     private javax.swing.JTextField txt_rut;

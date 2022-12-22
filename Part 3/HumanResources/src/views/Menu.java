@@ -1,5 +1,7 @@
 package views;
 
+import javax.swing.JFrame;
+
 public class Menu extends javax.swing.JFrame {
 
     public Menu() {
@@ -51,6 +53,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     //  -----------------------

@@ -5,10 +5,27 @@ import dao.EmployeeDAO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class NewEmployee extends javax.swing.JFrame {
+public class UpdateEmployee extends javax.swing.JFrame {
 
-    public NewEmployee() {
+    public UpdateEmployee(Employee e) {
         initComponents();
+        txt_rut.setText(String.valueOf(e.getRut()));
+        txt_name.setText(String.valueOf(e.getName()));
+        txt_lastname.setText(String.valueOf(e.getLast_name()));
+        spn_age.setValue(e.getAge());
+        cbo_position.setSelectedItem(e.getPosition());
+        if(e.isSex()) {
+            rbt_male.setSelected(true);
+        } else{
+            rbt_female.setSelected(true);
+        }
+        
+        if(e.isIs_foreign()){
+            chk_isforeign.setSelected(true);
+        }else{
+            chk_isforeign.setSelected(false);
+        }
+        
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -44,6 +61,8 @@ public class NewEmployee extends javax.swing.JFrame {
         lbl_age.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lbl_age.setText("Edad:");
 
+        txt_rut.setEditable(false);
+
         lbl_name.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lbl_name.setText("Nombre:");
 
@@ -72,7 +91,7 @@ public class NewEmployee extends javax.swing.JFrame {
             }
         });
 
-        btn_save.setText("Guardar");
+        btn_save.setText("Modificar");
         btn_save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_saveActionPerformed(evt);
@@ -99,51 +118,50 @@ public class NewEmployee extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(73, 73, 73)
+                            .addComponent(lbl_lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(46, 46, 46))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(lbl_name, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(41, 41, 41)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(73, 73, 73)
-                                    .addComponent(lbl_lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(46, 46, 46))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(lbl_name, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(41, 41, 41)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(111, 111, 111)
-                                .addComponent(lbl_rut, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lbl_position)
-                                    .addComponent(lbl_age, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_sex))
-                                .addGap(62, 62, 62)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txt_rut, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1))
-                            .addComponent(txt_lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(cbo_position, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(spn_age, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(chk_isforeign)
-                            .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(rbt_male)
-                                .addGap(40, 40, 40)
-                                .addComponent(rbt_female))))
+                        .addGap(111, 111, 111)
+                        .addComponent(lbl_rut, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbl_position)
+                            .addComponent(lbl_age, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_sex))
+                        .addGap(62, 62, 62)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(btn_save)
-                        .addGap(26, 26, 26)
-                        .addComponent(btn_clean)
-                        .addGap(29, 29, 29)
-                        .addComponent(btn_exit)))
+                        .addComponent(txt_rut, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1))
+                    .addComponent(txt_lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(cbo_position, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(spn_age, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chk_isforeign)
+                    .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(rbt_male)
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_exit)
+                            .addComponent(rbt_female))))
                 .addContainerGap(97, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btn_save)
+                .addGap(26, 26, 26)
+                .addComponent(btn_clean)
+                .addGap(216, 216, 216))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,12 +197,12 @@ public class NewEmployee extends javax.swing.JFrame {
                     .addComponent(rbt_female))
                 .addGap(29, 29, 29)
                 .addComponent(chk_isforeign)
-                .addGap(29, 29, 29)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_save)
                     .addComponent(btn_clean)
                     .addComponent(btn_exit))
-                .addGap(54, 54, 54))
+                .addGap(53, 53, 53))
         );
 
         pack();
@@ -196,7 +214,7 @@ public class NewEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_chk_isforeignActionPerformed
     
     // -------------------------
-    // Boton Guardar
+    // Boton Modificar
     // -------------------------
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
 
@@ -213,10 +231,13 @@ public class NewEmployee extends javax.swing.JFrame {
             
             EmployeeDAO dao = new EmployeeDAO();
             
-            if(dao.createEmployee(e)){
-                JOptionPane.showMessageDialog(this, "Guardado correctamente");
-                this.clear();
+            if(dao.updateEmployee(e)){
+                JOptionPane.showMessageDialog(this, "Modificado correctamente");
+                this.dispose();
+                ListEmployee list = new ListEmployee();
+                list.setVisible(true);
             }else{
+                System.out.println(e);
                 JOptionPane.showMessageDialog(this, "Ha ocurrido un error");
             }
             
@@ -261,19 +282,20 @@ public class NewEmployee extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewEmployee().setVisible(true);
+                new UpdateEmployee(null).setVisible(true);
             }
         });
     }

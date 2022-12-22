@@ -115,4 +115,34 @@ public class EmployeeDAO {
         }
         return is_delete;
     }
+
+    public boolean updateEmployee(Employee e) throws SQLException{
+        boolean is_update = false;
+        Connection conn = connect.openConnection();
+        try {
+            String sql = "update employee set name=?, last_name=?, age=?,"
+                    + " position=?, sex=?, is_foreign=?"
+                    + " where rut = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            
+            //PK debe ir al ultimo por estar dentro de where
+            stmt.setString(1, e.getName());
+            stmt.setString(2, e.getLast_name());
+            stmt.setInt(3, e.getAge());
+            stmt.setString(4, e.getPosition());
+            stmt.setBoolean(5, e.isSex());
+            stmt.setBoolean(6, e.isIs_foreign());
+            stmt.setString(7, e.getRut());
+            
+            //ejecutar sentencia
+            int count = stmt.executeUpdate();
+            is_update = (count > 0);
+            
+        } catch (Exception ex) {
+            System.out.println("ERROR: "+ex.getMessage());
+        }finally{
+            conn.close();
+        }
+        return is_update;
+    }
 }
