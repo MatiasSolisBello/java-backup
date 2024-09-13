@@ -4,33 +4,33 @@
 
 [Fundamentos](#fundamentos)
 
-    [Tipo de datos]()
+    [Tipo de datos](#tipo-de-datos)
 
-    Operadores logicos y aritmeticos
+    [Operadores logicos y aritmeticos](#operadores-logicos-y-aritmeticos)
 
-    Condicionales
+    [Condicionales](#condicionales)
 
-    Switch
+    [Switch](#switch)
 
-    Operador ternario
+    [Operador ternario](#operador-ternario)
 
-    While
+    [While](#while)
 
-    For
+    [For](#for)
 
-    Vectores
+    [Vectores](#vectores)
 
-    Matrices
+    [Matrices](#matrices)
 
-POO
+[POO](#poo)
 
-    Clases abstractas
+   [Clases abstractas](#clases-abstractas)
 
-    Interfaces
+    [Interfaces](#interfaces)
 
-    Sobrecarga de metodos
+    [Sobrecarga de metodos](#sobrecarga-de-metodos)
 
-    Sobreescritura de metodos
+    [Sobreescritura de metodos](#sobreescritura-de-metodos)
 
 ---
 
@@ -99,7 +99,7 @@ int vector [] = new int [5];
 vector[0] = 1;
 ```
 
-### Matriz
+### Matrices
 
 ```java
 Double matriz [][] = new Double[4][4];
