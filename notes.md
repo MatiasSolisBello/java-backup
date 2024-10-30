@@ -32,6 +32,18 @@
 
     [Sobreescritura de metodos](#sobreescritura-de-metodos)
 
+[collections](#collections)
+
+[Listas](#listas)
+
+[ArrayList](#arraylist)
+
+[LinkedLists](#linkedlists)
+
+[ArrayList vs LinkedLists](#arrayList-vs-linkedLists)
+
+[Stacks](#stacks)
+[Relaciones entre clases](#relaciones-entre-clases)
 ---
 
 ## Fundamentos
@@ -165,3 +177,142 @@ Es cuando una clase tiene dos metodos llamados igual, pero con distintos paramet
 ### Sobreescritura de metodos
 
 Metodo de una clase hija que tambien es declarado como metodo abstracto en la clase abstracta(@Override). Hace uso de herencia y polimorfismo
+
+## COLLECTIONS
+Son estructuras similares a los arreglos, pero con las principal caracteristica de que son "dinamicos" en tamaño y cantidad de elementos. Estas se emplean mediante la interfaz Collection, que permite emplear distintos metodos.
+
+Tipos de colecciones. List. Set. Queue. Map
+
+### Listas
+Conjunto de elemenntos relacionados entre si que tienen determinado orden. Su tamaño es dinamico y existen de tipo ArrayList, LinkedLists, Stack.
+
+Tipos de orden que pueden tener las listas:
+	* FIFO (First in first out)
+	* LIFO (Last in first out)
+
+### ArrayList
+Son una clase qu se representa como una matriz dinamica que permite almacenar elementos, hereda de la clase AbstractList, la cual implementa la interfaz List, permite colecciones o duplicados, el orden de los registros es el orden en que fueron insertados(FIFO), permite indice y es de manipulacion lenta(recorre todo el arraylist para hacer el cambio).
+
+```java
+//Declarar arraylist
+List<Persona> list = new ArrayList<Persona>();
+
+//Agregar elemento a la lista
+list.add(new Persona(1, "John", 23));
+
+//Recorrer lista por indice
+for(int i=0; i<lista.size(); i++){
+    sout(list.get(i).getNombre());
+}
+
+
+//Recorrer con for each
+for(Persona p:lists){
+    sout(p.getNombre());
+}
+
+//recorrer la lista con una función lambda
+list.forEach(listar - >{
+    System.out.println(listar + " " ) ;
+}) ;
+```
+
+### LinkedLists
+(Listas enlazadas): Es una clase que representa a una lista doblemente enlazada, permite duplicados, mantiene orden de insercion (FIFO), puede ser tratada como una lista, pila o cola. El recorrido no tienen indice bien definido, son para recorrer registro por registro.
+
+```java
+//Agregar elemento a la LinkedLists
+list.add(new Persona(1, "John", 23));
+
+//Agregar elemento al principio LinkedLists
+list.add(0, new Persona(1, "John", 23));
+
+//Recorrer con for each
+for(Persona p:lists){
+    sout(p.getNombre());
+}
+```
+
+### ArrayList vs LinkedLists
+
+```java
+Borrado de elementos
+//En arraylist
+lista.remove(1);
+
+
+//En LinkedLists
+String nombreBorrar = "Gabriel";
+for (Persona p : listaLinked) {
+if (p.getNombre().equals(nombreBorrar)) {
+    listaLinked.remove(p);
+    break;
+}
+}
+
+//Tamaño en ambos
+lista.size();
+
+//Otros
+lista.clear();
+lista.isEmpty();
+    
+//Obtener primer y ultimo
+listaLinked.getFirst().toSring();
+listaLinked.getLast().toSring();
+```
+
+## Stacks
+Hace referencia a cuando tienes una "pila de objetos"
+
+```java
+Stack<Integer> pila = new Stack<Integer>();
+
+//agregar
+pila.push(1);
+
+//recorido
+for(Integer p:pila){
+    sout(p);
+}
+
+pila.search(2); //Buscar por posicion
+pila.pop(); //Elimina el ultimo registro
+pila.peek(); //Ver ultimo elemento
+```
+
+## Hash Map
+Coleccion de par llave-valor, equivalente a diccionario en Python.
+	
+- put(C clave, V valor: Agregar un par clave-valor a la collection Map
+- get(Object clave): Devuelve el valor asociado a la clave brindada o null si la clave no existe.
+- containsKey(Object clave): Verifica si el Map contiene la clave especificada
+- containsValue(Object valor): Comprueba si el Map contiene el valor especificado, devuelve boolean.
+- remove(Object clave): Elimina el registro asociado a la clave brindada.
+- keySet(): Devuelve un conjunto de todas las claves en el Map.
+- values(): Devuelve una colección de todos los valores que contiene el Map.
+- clear()
+- size()
+
+```java
+// Declarar Hash Map
+Map<integer, String> mapEmployee = new HashMap<>();
+
+// Agregar
+mapEmployee.put(1, "John Rambo")
+
+// contains
+boolean isEmployee = mapEmployee.containsValue("John Rambo");
+boolean isEmployeeKey = mapEmployee.containsKey(1);
+
+
+// Devuelve valores como array/lista
+mapEmployee.values();
+mapEmployee.keySet();
+
+for (integer i : mapEmployee.values()) {
+  System.out.println(i);
+}
+```
+
+## Relaciones entre clases
