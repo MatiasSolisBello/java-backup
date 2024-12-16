@@ -47,6 +47,8 @@
     [Hash Map](#hash-map)
  
 [Relaciones entre clases](#relaciones-entre-clases)
+    [1 a 1](#1-a-1)
+    [1a n](#1-a-n)
 
 ---
 
@@ -412,3 +414,50 @@ for (integer i : mapEmployee.values()) {
 ```
 
 ## Relaciones entre clases
+
+### 1 a 1
+Ejemplo relación Cliente-Ticket, la relación se hace desde la segunda entidad (en este caso, ticket)
+```java
+public class Ticket {
+    public int number;
+    public int row;
+    public int seat;
+    public Date purchase_date;
+    public Date validity_date;
+    public int price;
+
+    // Relacion con cliente, con sus getter y setters
+    public Customer customer;
+}
+```
+
+### 1 a n
+Ejemplo relación Auto-Cliente (Un auto puede tener varios clientes) y la relación se hace desde el "1"
+```java
+public class Car {
+    public Long id;
+    public String brand;
+    public String model;
+
+    // Relación con cliente, con sus getter y setters
+    public List<Customer> listCustomers;
+}
+```
+
+```java
+Car car = new Car();
+car.setId(1L);
+car.setBrand("Kia");
+car.setModel("K4 Sedán 2025");
+
+List<Customer> listCustomers = new ArrayList<Customer>();
+Customer customer = new Customer();
+customer.setId(35);
+customer.setName("John Rambo");
+
+listCustomers.add(customer);
+car.setListCustomers(listCustomers);
+
+```
+
+
