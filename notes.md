@@ -34,15 +34,17 @@
 
 [Collections](#collections)
    
-    [Listas](#listas)
+    [Listas](#1-listas)
 
-    [ArrayList](#arraylist)
+        [ArrayList](#11-arraylist)
 
-    [LinkedLists](#linkedlists)
+        [LinkedLists](#12-linkedlists)
 
-    [ArrayList vs LinkedLists](#arraylist-vs-linkedlists)
+        [ArrayList vs LinkedLists](#arraylist-vs-linkedlists)
 
-    [Stacks](#stacks)
+        [Stacks](#13-stacks)
+    
+    [Hash Map](#hash-map)
  
 [Relaciones entre clases](#relaciones-entre-clases)
 
@@ -255,94 +257,112 @@ cat.makeNoise();
 
 
 ## COLLECTIONS
-Son estructuras similares a los arreglos, pero con las principal caracteristica de que son "dinamicos" en tamaño y cantidad de elementos. Estas se emplean mediante la interfaz Collection, que permite emplear distintos metodos.
+Son estructuras similares a los arreglos, pero con las principal caracteristica de que son "dinamicos" en tamaño y cantidad de elementos. Estas se emplean mediante la interfaz "Collection", que permite emplear distintos metodos.
 
-Tipos de colecciones. List. Set. Queue. Map
+Tipos de colecciones: 
+* List
+* Set
+* Queue
+* Map
 
-### Listas
-Conjunto de elemenntos relacionados entre si que tienen determinado orden. Su tamaño es dinamico y existen de tipo ArrayList, LinkedLists, Stack.
+### 1. Listas
+Conjunto de elemenntos relacionados entre si que tienen determinado orden. Su tamaño es dinamico y existen de tipo:
+* ArrayList
+* LinkedLists
+* Stack.
 
 Tipos de orden que pueden tener las listas:
-	* FIFO (First in first out)
-	* LIFO (Last in first out)
+* FIFO (First in first out)
+* LIFO (Last in first out)
 
-### ArrayList
-Son una clase qu se representa como una matriz dinamica que permite almacenar elementos, hereda de la clase AbstractList, la cual implementa la interfaz List, permite colecciones o duplicados, el orden de los registros es el orden en que fueron insertados(FIFO), permite indice y es de manipulacion lenta(recorre todo el arraylist para hacer el cambio).
+#### 1.1 ArrayList
+* Son una clase que se representa como una matriz dinamica que permite almacenar elementos
+* Hereda de la clase AbstractList, la cual implementa la interfaz List
+* Permite colecciones o duplicados
+* El orden de los registros es el orden en que fueron insertados(FIFO)
+* Permite indice y es de manipulacion lenta(recorre todo el arraylist para hacer el cambio).
 
 ```java
-//Declarar arraylist
-List<Persona> list = new ArrayList<Persona>();
+//Declarar arraylist de clase Persona(num, nombre, edad)
+//List<Persona> list;
+List<Persona> lista = new ArrayList<Persona>();
 
 //Agregar elemento a la lista
-list.add(new Persona(1, "John", 23));
+lista.add(new Persona(1, "John", 23));
 
 //Recorrer lista por indice
 for(int i=0; i<lista.size(); i++){
-    sout(list.get(i).getNombre());
+    System.out.println(lista.get(i).getNombre());
 }
 
-
-//Recorrer con for each
-for(Persona p:lists){
-    sout(p.getNombre());
+//Recorrer con foreach
+for(Persona p:lista){
+    System.out.println(p.getNombre());
 }
 
 //recorrer la lista con una función lambda
-list.forEach(listar - >{
+lista.forEach(listar - >{
     System.out.println(listar + " " ) ;
 }) ;
+
+// Borrado de elementos
+lista.remove(1);
 ```
 
-### LinkedLists
-(Listas enlazadas): Es una clase que representa a una lista doblemente enlazada, permite duplicados, mantiene orden de insercion (FIFO), puede ser tratada como una lista, pila o cola. El recorrido no tienen indice bien definido, son para recorrer registro por registro.
+### 1.2 LinkedLists
+* Es una clase que representa a una lista doblemente enlazada
+* Permite duplicados
+* Mantiene orden de insercion (FIFO)
+* Puede ser tratada como una lista, pila o cola
+* Permite hacer inserciones o eliminaciones al principio o final de la colección
 
 ```java
+//Declarar linkedList
+List<Persona> lista = new LinkedLists<Persona>();
+
 //Agregar elemento a la LinkedLists
-list.add(new Persona(1, "John", 23));
+lista.add(new Persona(1, "John", 23));
 
 //Agregar elemento al principio LinkedLists
-list.add(0, new Persona(1, "John", 23));
+lista.add(0, new Persona(2, "Max", 21));
 
-//Recorrer con for each
-for(Persona p:lists){
-    sout(p.getNombre());
+//Recorrer con foreach
+for(Persona p:lista){
+    System.out.println(p.getNombre());
 }
+
+// Borrado de elemento
+for (Persona p : listaLinked) {
+    if (p.getNombre().equals("Gabriel")) {
+        lista.remove(p);
+        break;
+    }
+}
+
+//Obtener primer y ultimo
+lista.getFirst().toSring();
+lista.getLast().toSring();
 ```
 
 ### ArrayList vs LinkedLists
 
 ```java
-Borrado de elementos
-//En arraylist
-lista.remove(1);
-
-
-//En LinkedLists
-String nombreBorrar = "Gabriel";
-for (Persona p : listaLinked) {
-if (p.getNombre().equals(nombreBorrar)) {
-    listaLinked.remove(p);
-    break;
-}
-}
-
 //Tamaño en ambos
 lista.size();
 
 //Otros
 lista.clear();
 lista.isEmpty();
-    
-//Obtener primer y ultimo
-listaLinked.getFirst().toSring();
-listaLinked.getLast().toSring();
 ```
 
-## Stacks
+## 1.3 Stacks
 Hace referencia a cuando tienes una "pila de objetos"
 
 ```java
 Stack<Integer> pila = new Stack<Integer>();
+
+// esta vacia?
+pila.isEmpty();
 
 //agregar
 pila.push(1);
