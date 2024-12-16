@@ -24,26 +24,28 @@
 
 [POO](#poo)
 
-   [Clases abstractas](#clases-abstractas)
-
+    [Clases abstractas](#clases-abstractas)
+ 
     [Interfaces](#interfaces)
-
+  
     [Sobrecarga de metodos](#sobrecarga-de-metodos)
-
+   
     [Sobreescritura de metodos](#sobreescritura-de-metodos)
 
-[collections](#collections)
+[Collections](#collections)
+   
+    [Listas](#listas)
 
-[Listas](#listas)
+    [ArrayList](#arraylist)
 
-[ArrayList](#arraylist)
+    [LinkedLists](#linkedlists)
 
-[LinkedLists](#linkedlists)
+    [ArrayList vs LinkedLists](#arraylist-vs-linkedlists)
 
-[ArrayList vs LinkedLists](#arrayList-vs-linkedLists)
-
-[Stacks](#stacks)
+    [Stacks](#stacks)
+ 
 [Relaciones entre clases](#relaciones-entre-clases)
+
 ---
 
 ## Fundamentos
@@ -65,14 +67,25 @@
 ### Switch
 
 ```java
-option = Integer.parseInt(sn.nextLine());
-switch(option){
-    case 1:
-        System.out.println("Opcion 1");
-        break;
-    case 2:
-        System.out.println("Opcion 1");
-        break;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sn = new Scanner(System.in);
+        int option = 0;
+
+        System.out.println("Seleccione una opción:");
+        option = sn.nextInt();
+
+        switch(option){
+            case 1:
+                System.out.println("Opcion 1");
+                break;
+            case 2:
+                System.out.println("Opcion 2");
+                break;
+        }
+    }
 }
 ```
 
@@ -81,7 +94,15 @@ switch(option){
 Son condicionales en una sola linea
 
 ```java
-variable = (condicion) ? valor_si_verdadero : valor_si_falso
+// Teoria
+// variable = (condicion) ? valor_si_verdadero : valor_si_falso
+
+int vehiculoId = 5;
+String vehiculoTipo;
+
+vehiculoTipo = (vehiculoId <= 3) ? "Auto" : "Moto";
+System.out.println(vehiculoTipo);
+
 ```
 
 ### While
@@ -172,11 +193,66 @@ public interface ICalculable {
 
 ### Sobrecarga de metodos
 
-Es cuando una clase tiene dos metodos llamados igual, pero con distintos parametros de entrada.
+Es cuando una clase tiene dos metodos llamados igual, pero con distintos parametros de entrada, ya sea por cantidad o tipo de dato entrante.
+
+```java
+public class Calculator {
+    // dos integers
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    // tres integers
+    public int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    // dos double
+    public double add(double a, double b) {
+        return a + b;
+    }
+}
+```
 
 ### Sobreescritura de metodos
 
-Metodo de una clase hija que tambien es declarado como metodo abstracto en la clase abstracta(@Override). Hace uso de herencia y polimorfismo
+Metodo de una clase hija que tambien es declarado como metodo abstracto en la clase abstracta(@Override). Hace uso de herencia y polimorfismo.
+
+En este ejemplo, la clase "Dog" y "Cat" heredan de "Animal"
+
+```java
+public abstract class Animal {
+    public abstract void makeNoise();
+}
+```
+
+```java
+class Dog extends Animal {
+    @Override
+    public void makeNoise() {
+        System.out.println("Woof! Woof!");
+    }
+}
+
+class Cat extends Animal {
+    @Override
+    public void makeNoise() {
+        System.out.println("Meow! Meow!");
+    }
+}
+```
+
+```java
+Animal genericAnimal = new Animal();
+Animal dog = new Dog();
+Animal cat = new Cat();
+Animal cow = new Cow();
+
+genericAnimal.makeNoise();
+dog.makeNoise();
+cat.makeNoise();
+```
+
 
 ## COLLECTIONS
 Son estructuras similares a los arreglos, pero con las principal caracteristica de que son "dinamicos" en tamaño y cantidad de elementos. Estas se emplean mediante la interfaz Collection, que permite emplear distintos metodos.
