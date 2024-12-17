@@ -22,6 +22,10 @@
 
     [Matrices](#matrices)
 
+    [Convertir tipos de datos](#convertir-tipos-de-datos)
+
+    [Enum](#enum)
+
 [POO](#poo)
 
     [Clases abstractas](#clases-abstractas)
@@ -142,6 +146,65 @@ vector[0] = 1;
 Double matriz [][] = new Double[4][4];
 matriz[0][0] = 4
 ```
+
+### Convertir tipos de datos
+
+Double a entero y long
+```java
+double num = 1.97;
+
+int numInt = (int) num; // double a entero
+System.out.println(numInt); // 1
+
+long numLong = (long) num; // double a long
+System.out.println(numLong); // 1
+```
+
+String a entero y double
+```java
+String cant = "15"; //String es una clase
+String price = "150.27";
+
+int cantInt = Integer.parseInt(cant);
+double priceDouble = Double.parseDouble(price);
+System.out.println(cantInt + priceDouble);
+```
+
+Entero y double a String
+```java
+int age = 30;
+double height = 1.67;
+
+String ageString = String.valueOf(age);
+String heightString = String.valueOf(height);
+System.out.println(""+ageString+" / "+heightString);
+```
+
+### Enum
+Pablabra clave utilizada para definir un tipo de dato especial que representa un conjunto fijo de constantes.
+Estas constantes son valores predefinidos que representan elementos distinto de un conjunto.
+
+Entre sus metodos estan:
+* name(): Devuelve String con el nombre de la constante
+* ordinal(): Devuelve un entero con la posición del enum
+* values(): Devuelve un array con todos los elementos
+* valesOf(String name): Obtener constante del nombre indicado
+
+```java
+enum Days {
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+}
+Days day = Days.MONDAY;
+System.out.println(""+day+" / "+ day.ordinal());
+
+System.out.println("----------------");
+for (Days d : Days.values()) {
+    System.out.println(d);
+}
+System.out.println("----------------");
+
+```
+
 
 ## POO
 
