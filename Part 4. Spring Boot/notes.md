@@ -8,17 +8,17 @@
 
 [Relaciones](#relaciones)
 
-    [@OneToOne](#@OneToMany)
+    [OneToOne](#onetoone)
 
-    [@OneToMany](#@OneToMany)
+    [OneToMany](#onetomany)
 
-    [ManyToOne](#ManyToOne)
+    [ManyToOne](#manytoone)
 
-    [@ManyToMany](#@ManyToMany)
+    [ManyToMany](#manytomany)
 
-    [Unidireccional vs Bidireccional](#Unidireccional-vs-Bidireccional)
+    [Unidireccional vs Bidireccional](#unidireccional-vs-bidireccional)
 
-[CrudRepository vs JpaRepository](#CrudRepository-vs-JpaRepository)
+[CrudRepository vs JpaRepository](#crudrepository-vs-jparepository)
 
 ---
 
@@ -49,7 +49,7 @@
 * Utilizar **mappedBy** aparece en el lado inverso de la relación, es decir, indica el campo en la otra entidad (la propietaria) que gestiona la relación.
 * Usar atributo **cascade**  para especificar operaciones en cascada (por ejemplo CascadeType.ALL, CascadeType.PERSIST)
 
-### @OneToOne
+### OneToOne
 Relación donde una entidad está asociada con una sola instancia de otra entidad.
 
 * Ejemplo: Un User tiene un único Passport.
@@ -76,7 +76,7 @@ public class Passport {
 }
 ```
 
-### @OneToMany
+### OneToMany
 Una entidad está asociada con múltiples instancias de otra entidad.
 
 * Ejemplo: Un User puede tener muchas Order.
@@ -108,7 +108,7 @@ Relación inversa de @OneToMany. Múltiples entidades están asociadas con una �
 * Ejemplo: Muchas Order pertenecen a un User.
 * Generalmente es la entidad propietaria.
 
-### @ManyToMany
+### ManyToMany
 Relación donde múltiples entidades están asociadas entre sí.
 
 * Ejemplo: Un Student puede estar inscrito en múltiples Course, y un Course puede tener múltiples Student.
@@ -196,3 +196,15 @@ public class Order {
 
 
 ## CrudRepository vs JpaRepository
+
+
+[<img src="https://i.sstatic.net/cORdk.jpg" width="500"/>](https://i.sstatic.net/cORdk.jpg)
+
+JpaRepository extiende PagingAndSortingRepository, que a su vez extiende CrudRepository.
+
+* CrudRepository proporciona principalmente funciones CRUD.
+* PagingAndSortingRepository proporciona métodos para realizar la paginación y ordenar registros.
+* JpaRepository proporciona algunos métodos relacionados con JPA, como vaciar el contexto de persistencia y eliminar registros en un lote.
+
+Debido a la herencia mencionada anteriormente, JpaRepository tendrá todas las funciones de CrudRepository y PagingAndSortingRepository.
+Por lo tanto, si no necesita que el repositorio tenga las funciones proporcionadas por JpaRepository y PagingAndSortingRepository, use CrudRepository.
